@@ -14,7 +14,6 @@ app.use(bodyParser.urlencoded())
 app.use(bodyParser.json())
 
 app.post("/aaa", (req, res) => {
-  console.log("Heya:", req.body)
   const {username, password} = req.body
   createUser(username, password)
   res.json({message: "Success!"})
