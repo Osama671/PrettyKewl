@@ -4,15 +4,23 @@ import "./index.css";
 import App from "./App.tsx";
 import Test from "./pages/Test.tsx";
 import { BrowserRouter, Routes, Route } from "react-router";
+import MUI from "./pages/MUI.tsx";
+import { createTheme, ThemeProvider } from "@mui/material";
+
+const theme = createTheme({ typography: {} });
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="test" element={<Test />} />
-        <Route path="test/:id" element={<Test />} />
-      </Routes>
+      <ThemeProvider theme={theme}>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="test" element={<Test />} />
+          <Route path="test/:id" element={<Test />} />
+          <Route path="/cookie" element={<Test />}></Route>
+          <Route path="/mui" element={<MUI />}></Route>
+        </Routes>
+      </ThemeProvider>
     </BrowserRouter>
   </StrictMode>
 );

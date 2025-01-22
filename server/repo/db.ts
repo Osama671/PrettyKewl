@@ -1,14 +1,16 @@
 import dotenv from "dotenv";
-import postgres from "postgres";
+import pg from "pg";
 
 dotenv.config();
 
-let sql;
-const sqlURL = process.env.POSTGRESURL || "";
-if (sqlURL === "") {
-  throw new Error("Error with SQL connection, check .env file thx uwu");
-} else {
-  sql = postgres(sqlURL);
-}
+const { Client } = pg;
+const client = new Client({
+  user: process.env.DBUSER,
+  password: process.env.DBPASSWORD,
+  host: process.env.DBHOST,
+  port: Number(process.env.DBPORT),
+  database: process.env.DBDATABASE,
+});
+await client.connect();
 
-export default sql;
+export default client
