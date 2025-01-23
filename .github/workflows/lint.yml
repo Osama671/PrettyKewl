@@ -3,10 +3,10 @@ name: Lint and Format
 on:
   push:
     branches:
-      - main
+      - initbranch
   pull_request:
     branches:
-      - main
+      - initbranch
 
 jobs:
   lint:
