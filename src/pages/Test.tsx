@@ -1,33 +1,25 @@
-import { FormEvent, useEffect, useState } from "react";
-import { Link } from "react-router";
+import { FormEvent } from "react";
 import axios from "axios";
-import Button from "@mui/material/Button";
 
 export default function Test() {
-  const [count, setCount] = useState<number>(0);
 
   const onLoginHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const [username2, password2] = e.target;
+    await axios.get(
+      `/api/login?username=${username2.value}&password=${password2.value}`
+    );
   };
 
   const onRegisterHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const [username, password] = e.target;
-    console.log(username.value, password.value);
-    const response = await axios.post("/api/aaa", {
+    await axios.post("/api/register", {
       username: username.value,
       password: password.value,
     });
   };
 
-  const fetchCookie = async () => {
-    const response = await axios.get("/api/cookie");
-    setCount(response.data.count);
-  };
-
-  useEffect(() => {
-    fetchCookie();
-  }, []);
   return (
     <>
       <form onSubmit={onRegisterHandler}>
@@ -52,20 +44,7 @@ export default function Test() {
         <br />
         <button>Login!</button>
       </form>
-      <Link to="/">
-        <button style={{ marginTop: "50px" }}>Return</button>
-      </Link>
-      <button
-        onClick={() => {
-          fetchCookie();
-        }}
-      >
-        Get Cookie!
-      </button>
-      <br />
-      <Button onClick={() => {axios.get(`/api/login?username=Heya`)}} variant="outlined">Heya</Button>
-      <br />
-      <h1>You viewed this {count} times</h1>
+      
     </>
   );
 }

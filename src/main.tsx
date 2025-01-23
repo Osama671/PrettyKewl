@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
 import Test from "./pages/Test.tsx";
+import JWT from "./pages/JWT.tsx";
 import { BrowserRouter, Routes, Route } from "react-router";
 import MUI from "./pages/MUI.tsx";
 import { createTheme, ThemeProvider } from "@mui/material";
@@ -17,7 +18,7 @@ createRoot(document.getElementById("root")!).render(
           <Route path="/" element={<App />} />
           <Route path="test" element={<Test />} />
           <Route path="test/:id" element={<Test />} />
-          <Route path="/cookie" element={<Test />}></Route>
+          <Route path="/JWT" element={<JWT />}></Route>
           <Route path="/mui" element={<MUI />}></Route>
         </Routes>
       </ThemeProvider>
