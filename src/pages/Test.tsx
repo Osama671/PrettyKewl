@@ -7,14 +7,14 @@ export default function Test() {
     e.preventDefault();
     const [username2, password2] = e.target;
     await axios.get(
-      `/api/login?username=${username2.value}&password=${password2.value}`
+      `/api/user/login?username=${username2.value}&password=${password2.value}`
     );
   };
 
   const onRegisterHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const [username, password] = e.target;
-    await axios.post("/api/register", {
+    await axios.post("/api/user/register", {
       username: username.value,
       password: password.value,
     });

@@ -15,7 +15,7 @@ export default function JWT() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get(`/api/user`);
+        const response = await axios.get(`/api/user/fetchuser`);
         setUsername(response.data.user);
         setIsLoading(false);
       } catch (e) {

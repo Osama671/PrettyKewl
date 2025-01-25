@@ -1,4 +1,5 @@
 import { Button, Container, Grid2, Typography } from "@mui/material";
+import { Link } from "react-router";
 
 export default function Landingpage() {
   return (
@@ -37,10 +38,12 @@ export default function Landingpage() {
           <Typography sx={{textAlign: "center", mt: "16px", color: "white"}}>wtf am i doing</Typography>
         </Grid2>
         <Grid2 sx={{mt: "16px"}}>
-          <Button variant="contained" sx={{width: "150px"}}>Sign in</Button>
+          <Link to="/signin">
+          <Button variant="contained" sx={{width: "150px"}}>Sign in</Button></Link>
         </Grid2>
         <Grid2 sx={{mt: "16px"}}>
-          <Button variant="contained" sx={{width: "150px"}}>Sign up</Button>
+          <Link to="store">
+          <Button variant="contained" sx={{width: "150px"}}>Sign up</Button></Link>
         </Grid2>
       </Grid2>
     </Container>
