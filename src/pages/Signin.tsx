@@ -1,3 +1,9 @@
-export default function Signin(){
-    return <><h1>Sign in page</h1></>
+import { Container } from "@mui/material";
+
+export default function Signin() {
+  return (
+    <>
+      <Container sx={{width: "100%"}}></Container>
+    </>
+  );
 }
