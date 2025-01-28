@@ -1,32 +1,22 @@
-import Carousel from "react-material-ui-carousel";
-import { Box } from "@mui/material";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
 
-export default function Carousell({ images }: { images: string[] }) {
-  return (
-    <Carousel
-      sx={{
-        width: "100%",
-        height: "auto",
-      }}
-    >
-      {images.map((image, i) => (
-        <Item key={i} image={image} />
-      ))}
-    </Carousel>
-  );
-}
+import "swiper/swiper-bundle.css"; // Main Swiper styles
 
-function Item({ image }: { image: string }) {
+export default function Carousel() {
   return (
-    <Box
-      component={"img"}
-      sx={{
-        objectFit: "fill",
-        width: "100%",
-        height: "100%",
-        aspectRatio: "auto",
-      }}
-      src={`${image}`}
-    ></Box>
+    <>
+      <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+        <SwiperSlide>Slide 1</SwiperSlide>
+        <SwiperSlide>Slide 2</SwiperSlide>
+        <SwiperSlide>Slide 3</SwiperSlide>
+        <SwiperSlide>Slide 4</SwiperSlide>
+        <SwiperSlide>Slide 5</SwiperSlide>
+        <SwiperSlide>Slide 6</SwiperSlide>
+        <SwiperSlide>Slide 7</SwiperSlide>
+        <SwiperSlide>Slide 8</SwiperSlide>
+        <SwiperSlide>Slide 9</SwiperSlide>
+      </Swiper>
+    </>
   );
 }
