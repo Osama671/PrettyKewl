@@ -1,4 +1,4 @@
-import regexValidations from "./regex.ts"
+import regexValidations from "./regex.ts";
 
 export const ValidateCreateAccount = (
   username: string,
@@ -6,13 +6,14 @@ export const ValidateCreateAccount = (
   password2: string,
   email: string
 ) => {
-  const usernameRegex = regexValidations.usernameRegex
+  const usernameRegex = regexValidations.usernameRegex;
 
-  const passwordUpperCaseRegex = regexValidations.passwordUpperCaseRegex
-  const passwordSpecialCharacterRegex = regexValidations.passwordSpecialCharacterRegex
-  const passwordOneNumberRegex = regexValidations.passwordOneNumberRegex
+  const passwordUpperCaseRegex = regexValidations.passwordUpperCaseRegex;
+  const passwordSpecialCharacterRegex =
+    regexValidations.passwordSpecialCharacterRegex;
+  const passwordOneNumberRegex = regexValidations.passwordOneNumberRegex;
 
-  const emailRegex = regexValidations.emailRegex
+  const emailRegex = regexValidations.emailRegex;
 
   const errors = { username: "", password: "", password2: "", email: "" };
   if (username !== undefined) {
@@ -79,4 +80,5 @@ export const ValidateCreateAccount = (
     1- Must have an @ symbol
     2- Domain must have letters and dots
     3- TLD must be between 2-6 characters
-    */
+
+*/

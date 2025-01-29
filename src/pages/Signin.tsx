@@ -1,13 +1,11 @@
-import { Container, Typography } from "@mui/material";
-import { Link } from "react-router";
+import { Container } from "@mui/material";
+import Login from "../components/Login";
 
 export default function Signin() {
   return (
     <>
-      <Container sx={{ width: "100%" }}>
-        <Link to="/signup">
-          <Typography>Sign up page</Typography>
-        </Link>
+      <Container maxWidth={false} sx={{ width: "100%", height: "100vh" }}>
+        <Login></Login>
       </Container>
     </>
   );
