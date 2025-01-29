@@ -4,15 +4,24 @@ import createUser, { fetchUser } from "../repo/user.ts";
 import jwt from "jsonwebtoken";
 import { verifyJWT } from "../middleware/verifyJWT.ts";
 import { IRequestExtension } from "../../types.ts";
+import { validateRegisterUser } from "../middleware/validations.tsx";
 
 const router = express.Router();
 
-router.post("/register", async (req: Request, res: Response) => {
-    console.log("hey")
-  const { username, password } = req.body;
-  createUser(username, password);
-  res.json({ message: "Success!" });
-});
+router.post(
+  "/register",
+  validateRegisterUser,
+  async (req: Request, res: Response) => {
+    try {
+      console.log("hey");
+      const { username, password, email } = req.body;
+      createUser(username, password, email);
+      res.status(200).json({ message: "Success!" });
+    } catch (e) {
+      console.log(`Error while registering: ${e}`);
+    }
+  }
+);
 
 router.get(
   "/login",
@@ -52,7 +61,7 @@ router.get("/logout", verifyJWT, (req: Request, res: Response) => {
 });
 
 router.get("/", (req, res) => {
-    res.json({message: "heyaas"})
-})
+  res.json({ message: "heyaas" });
+});
 
-export default router
+export default router;

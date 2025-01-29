@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { FormEvent, useCallback, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
-import { ValidateCreateAccount } from "../utils/formValidations";
+import { ValidateCreateAccount } from "../../shared/validations/formValidations.tsx";
 import axios from "axios";
 
 export default function CreateAccount() {
@@ -42,6 +42,9 @@ export default function CreateAccount() {
   const onHandleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     try {
       e.preventDefault();
+      if (Object.values(errors).some((ele) => ele !== "")) {
+        return;
+      }
       const formData = new FormData(e.currentTarget);
       const username = formData.get("username");
       const password = formData.get("password");
