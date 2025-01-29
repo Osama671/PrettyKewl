@@ -1,9 +1,9 @@
-import { Container, Grid2, Paper } from "@mui/material";
+import { Container, Grid2 } from "@mui/material";
 import Carousel from "../components/Carousel";
+import CreateAccount from "../components/CreateAccount";
 
 export default function Signup() {
   const images = ["../../tree.jpg", "../../MainBefore.jpg", "../../tree.jpg"];
-
 
   return (
     <>
@@ -16,7 +16,7 @@ export default function Signup() {
             <Carousel images={images}></Carousel>
           </Grid2>
           <Grid2 size={7} sx={{ p: "32px", height: "100%" }}>
-            <Paper sx={{ height: "100%" }}>Hey</Paper>
+            <CreateAccount />
           </Grid2>
         </Grid2>
       </Container>
