@@ -6,11 +6,14 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { FormEvent, useEffect, useState } from "react";
-import { Link } from "react-router";
+import { FormEvent, useCallback, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router";
 import { ValidateCreateAccount } from "../utils/formValidations";
+import axios from "axios";
 
 export default function CreateAccount() {
+  const navigate = useNavigate();
+
   const [formFields, setFormFields] = useState({
     username: "",
     password: "",
@@ -25,31 +28,42 @@ export default function CreateAccount() {
     email: "",
   });
 
-  const handleFormValidation = () => {
-    setErrors(
-      ValidateCreateAccount(
-        formFields.username,
-        formFields.password,
-        formFields.password2,
-        formFields.email
-      )
+  const handleFormValidation = useCallback(() => {
+    const validationErrors = ValidateCreateAccount(
+      formFields.username,
+      formFields.password,
+      formFields.password2,
+      formFields.email
     );
+    setErrors(validationErrors);
     console.log("Errors: ", errors);
-  };
+  }, [formFields]);
 
   const onHandleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const username = formData.get("username");
-    const password = formData.get("password");
-    const password2 = formData.get("password2");
-    const email = formData.get("email");
-    // console.log(username, password, password2, email);
+    try {
+      e.preventDefault();
+      const formData = new FormData(e.currentTarget);
+      const username = formData.get("username");
+      const password = formData.get("password");
+      const password2 = formData.get("password2");
+      const email = formData.get("email");
+      const response = await axios.post("/api/user/register", {
+        username: username,
+        password: password,
+        password2: password2,
+        email: email,
+      });
+      if (response.status === 200) {
+        navigate("/");
+      }
+    } catch (e) {
+      console.error(`ERROR: ${e}`);
+    }
   };
 
   useEffect(() => {
     handleFormValidation();
-  }, [formFields]);
+  }, [formFields, handleFormValidation]);
   return (
     <>
       <Paper elevation={12} sx={{ height: "100%" }}>

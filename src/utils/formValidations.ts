@@ -1,18 +1,18 @@
+import regexValidations from "../../shared/validations/regex.ts"
+
 export const ValidateCreateAccount = (
   username: string,
   password: string,
   password2: string,
   email: string
 ) => {
-  const usernameRegex = /^[a-zA-Z0-9-_]{3,32}$/g;
+  const usernameRegex = regexValidations.usernameRegex
 
-  // const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,100}$/;
+  const passwordUpperCaseRegex = regexValidations.passwordUpperCaseRegex
+  const passwordSpecialCharacterRegex = regexValidations.passwordSpecialCharacterRegex
+  const passwordOneNumberRegex = regexValidations.passwordOneNumberRegex
 
-  const passwordUpperCaseRegex = /^(?=.*[A-Z]).+$/;
-  const passwordSpecialCharacterRegex = /^(?=.*[!@#$%^&*]).+$/;
-  const passwordOneNumberRegex = /^(?=.*\d).+$/;
-
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+  const emailRegex = regexValidations.emailRegex
 
   const errors = { username: "", password: "", password2: "", email: "" };
   if (username !== undefined) {
@@ -46,10 +46,13 @@ export const ValidateCreateAccount = (
   if (password2 !== undefined) {
     if (password2.length === 0) {
       errors.password2 = "";
+    } else if (errors.password !== "") {
+      errors.password2 = "Password field is incorrect.";
     } else if (password !== password2) {
       errors.password2 = "Passwords do not match.";
     }
   }
+
   if (email !== undefined) {
     if (email.length === 0) {
       errors.email = "";
