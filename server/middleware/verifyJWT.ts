@@ -5,7 +5,7 @@ import { NextFunction } from "express";
 
 dotenv.config();
 
-type DecodedExtendedOrSomeShit = {username?: string}
+type DecodedExtendedOrSomeShit = {username: string}
 
 
 export const verifyJWT = (req: IRequestExtension, _, next: NextFunction) => {
