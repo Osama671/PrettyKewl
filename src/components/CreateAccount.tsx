@@ -65,7 +65,7 @@ export default function CreateAccount() {
   }, [formFields, handleFormValidation]);
   return (
     <>
-      <Paper elevation={12} sx={{ height: "100%" }}>
+      <Paper elevation={12} sx={{ height: "100%", overflowY: "auto" }}>
         <Stack flex={"column"} alignContent={"center"}>
           <Typography variant={"h3"} sx={{ textAlign: "center", mt: "4rem" }}>
             Create an Account
@@ -148,7 +148,7 @@ export default function CreateAccount() {
               >
                 Create Account
               </Button>
-              <Typography sx={{ mt: "2rem", textAlign: "center" }}>
+              <Typography sx={{ my: "2rem", textAlign: "center" }}>
                 Already have an account, pussy?&nbsp;
                 <Link to="/signin">Sign in</Link>
               </Typography>

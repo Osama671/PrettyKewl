@@ -37,7 +37,7 @@ export const validateLogin = async (
   try {
     if (req.cookies.token) {
       res.status(401).json({ message: "Already logged in, please log out" });
-      return
+      return;
     }
     const { username: user, password: pass } = req.query;
     if (user === undefined || pass === undefined)
@@ -46,7 +46,14 @@ export const validateLogin = async (
     const password = String(pass);
 
     const userDetailsFromDB = await fetchUser(username);
-    const isHashSimilar = await bcrypt.compare(password, userDetailsFromDB.password);
+    if (!userDetailsFromDB) {
+      res.status(404).json({ message: "User not found" });
+      return;
+    }
+    const isHashSimilar = await bcrypt.compare(
+      password,
+      userDetailsFromDB.password
+    );
 
     if (isHashSimilar === true) {
       return next();
