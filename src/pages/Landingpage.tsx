@@ -8,7 +8,7 @@ export default function Landingpage() {
       sx={{
         height: "100vh",
         width: "100%",
-        background: `url(../../doge.gif)`,
+        background: `url(gifs/doge.gif)`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "100% 100%",
       }}

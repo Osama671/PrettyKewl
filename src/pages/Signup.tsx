@@ -3,7 +3,7 @@ import Carousel from "../components/Carousel";
 import CreateAccount from "../components/CreateAccount";
 
 export default function Signup() {
-  const images = ["../../tree.jpg", "../../MainBefore.jpg", "../../tree.jpg"];
+  const images = ["images/tree.jpg", "images/MainBefore.jpg", "images/tree.jpg"];
 
   return (
     <>

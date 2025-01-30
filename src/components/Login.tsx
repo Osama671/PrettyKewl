@@ -19,7 +19,7 @@ export default function Login() {
         >
           <Card
             component={"img"}
-            src="../../drooling_cat.jpg"
+            src="images/drooling_cat.jpg"
             sx={{ width: "200px", height: "auto", mt: "4rem" }}
           ></Card>
           <Typography variant="h3" sx={{ mt: "2rem" }}>

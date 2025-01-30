@@ -3,7 +3,7 @@ import createUser from "../repo/user";
 import { IRequestExtension } from "../../types";
 import { v4 as uuid } from "uuid";
 
-export const clearCookie = async (req: Request, res: Response) => {
+export const clearCookie = (req: Request, res: Response) => {
   res.clearCookie("token").json({ message: "Successfully removed token" });
 };
 
