@@ -4,7 +4,7 @@ import { verifyJWT } from "../middleware/verifyJWT.ts";
 import {
   validateLogin,
   validateRegisterUser,
-} from "../middleware/validations.tsx";
+} from "../middleware/validations.ts";
 
 import signJWT from "../middleware/signJWT.ts";
 import { clearCookie, getAuthenticatedUser, registerUser } from "../controllers/user.ts";

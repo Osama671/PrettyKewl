@@ -8,6 +8,7 @@ const signJWT = async (req: Request, res: Response) => {
       expiresIn: "12h",
     });
     res
+      .status(200)
       .cookie("token", token, { httpOnly: true })
       .json({ message: "Login sucessful" });
   } catch (e) {

@@ -47,7 +47,7 @@ export const validateLogin = async (
 
     const userDetailsFromDB = await fetchUser(username);
     if (!userDetailsFromDB) {
-      res.status(404).json({ message: "User not found" });
+      res.status(403).json({ message: "Incorrect username or Email" });
       return;
     }
     const isHashSimilar = await bcrypt.compare(
