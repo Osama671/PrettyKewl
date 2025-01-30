@@ -1,5 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { ValidateCreateAccount } from "../../shared/validations/formValidations";
+import { fetchUser } from "../repo/user";
+import bcrypt from "bcrypt";
 
 export const validateRegisterUser = async (
   req: Request,
@@ -16,13 +18,42 @@ export const validateRegisterUser = async (
           console.log(`${key}: ${displayValue} | VALUE: ${req.body[key]}`);
         });
       }
-      console.error(`------Mismatched fields------`)
-      console.error(printErrors())
-      res.status(401).json({message: "Validation Error"})
-      return
+      console.error(`------Mismatched fields------`);
+      console.error(printErrors());
+      res.status(400).json({ message: "Validation Error" });
+      return;
     }
     next();
   } catch (e) {
-    console.log(`Unknown error: ${e}`);
+    console.log(`Error: ${e}`);
+  }
+};
+
+export const validateLogin = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    if (req.cookies.token) {
+      res.status(401).json({ message: "Already logged in, please log out" });
+      return
+    }
+    const { username: user, password: pass } = req.query;
+    if (user === undefined || pass === undefined)
+      throw new Error("Missing fields");
+    const username = String(user);
+    const password = String(pass);
+
+    const userDetailsFromDB = await fetchUser(username);
+    const isHashSimilar = await bcrypt.compare(password, userDetailsFromDB.password);
+
+    if (isHashSimilar === true) {
+      return next();
+    } else {
+      res.status(403).json({ message: "Incorrect username or Email" });
+    }
+  } catch (e) {
+    console.log(`Server Error: ${e}`);
   }
 };

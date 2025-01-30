@@ -42,7 +42,7 @@ export default function Landingpage() {
           <Button variant="contained" sx={{width: "150px"}}>Sign in</Button></Link>
         </Grid2>
         <Grid2 sx={{mt: "16px"}}>
-          <Link to="store">
+          <Link to="/store">
           <Button variant="contained" sx={{width: "150px"}}>Sign up</Button></Link>
         </Grid2>
       </Grid2>

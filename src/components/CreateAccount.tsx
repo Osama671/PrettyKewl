@@ -14,19 +14,16 @@ import axios from "axios";
 export default function CreateAccount() {
   const navigate = useNavigate();
 
-  const [formFields, setFormFields] = useState({
+  const formFieldsTemplate = {
     username: "",
     password: "",
     password2: "",
     email: "",
-  });
+  };
 
-  const [errors, setErrors] = useState({
-    username: "",
-    password: "",
-    password2: "",
-    email: "",
-  });
+  const [formFields, setFormFields] = useState(formFieldsTemplate);
+
+  const [errors, setErrors] = useState(formFieldsTemplate);
 
   const handleFormValidation = useCallback(() => {
     const validationErrors = ValidateCreateAccount(
@@ -36,7 +33,6 @@ export default function CreateAccount() {
       formFields.email
     );
     setErrors(validationErrors);
-    console.log("Errors: ", errors);
   }, [formFields]);
 
   const onHandleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -71,7 +67,7 @@ export default function CreateAccount() {
     <>
       <Paper elevation={12} sx={{ height: "100%" }}>
         <Stack flex={"column"} alignContent={"center"}>
-          <Typography variant={"h4"} sx={{ textAlign: "center", mt: "4rem" }}>
+          <Typography variant={"h3"} sx={{ textAlign: "center", mt: "4rem" }}>
             Create an Account
           </Typography>
           <Button
@@ -153,7 +149,7 @@ export default function CreateAccount() {
                 Create Account
               </Button>
               <Typography sx={{ mt: "2rem", textAlign: "center" }}>
-                Already have an account, pussy?{" "}
+                Already have an account, pussy?&nbsp;
                 <Link to="/signin">Sign in</Link>
               </Typography>
             </FormControl>

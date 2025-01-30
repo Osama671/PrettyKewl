@@ -1,4 +1,4 @@
-import regexValidations from "./regex.ts";
+import regexValidations from "../regex.ts";
 
 export const ValidateCreateAccount = (
   username: string,
@@ -9,13 +9,13 @@ export const ValidateCreateAccount = (
   const usernameRegex = regexValidations.usernameRegex;
 
   const passwordUpperCaseRegex = regexValidations.passwordUpperCaseRegex;
-  const passwordSpecialCharacterRegex =
-    regexValidations.passwordSpecialCharacterRegex;
+  const passwordSpecialCharacterRegex = regexValidations.passwordSpecialCharacterRegex;
   const passwordOneNumberRegex = regexValidations.passwordOneNumberRegex;
 
   const emailRegex = regexValidations.emailRegex;
 
   const errors = { username: "", password: "", password2: "", email: "" };
+
   if (username !== undefined) {
     if (username.length === 0) {
       errors.username = "";

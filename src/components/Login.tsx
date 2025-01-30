@@ -32,7 +32,7 @@ export default function Login() {
           ></TextField>
           <TextField
             type="text"
-            placeholder="Username"
+            placeholder="Password"
             sx={{ mt: "2rem", width: "60%" }}
           ></TextField>
           <Button variant="contained" sx={{ mt: "2rem" }}>
