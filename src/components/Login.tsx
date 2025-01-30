@@ -9,8 +9,10 @@ import {
 import axios, { AxiosError } from "axios";
 import { FormEvent } from "react";
 import { Link, useNavigate } from "react-router";
+import { useSnackbarContext } from "./Snackbar";
 
 export default function Login() {
+  const { createSnackbar } = useSnackbarContext();
   const navigate = useNavigate();
 
   const onHandleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -34,13 +36,13 @@ export default function Login() {
 
         switch (e.response.status) {
           case 401:
-            console.warn(message);
+            createSnackbar(message, "error")
             break;
           case 403:
-            console.warn(message);
+            createSnackbar(message, "error")
             break;
           case 500:
-            console.warn(message);
+            createSnackbar(message, "error")
             break;
         }
       }
@@ -82,7 +84,7 @@ export default function Login() {
             <Button variant="contained" sx={{ mt: "3rem" }}>
               Sign in with google innit bruv
             </Button>
-            <Typography variant="subtitle1" sx={{ mt: "2rem" }}>
+            <Typography variant="subtitle1" sx={{ my: "2rem" }}>
               Don't have an account? <Link to="/signup">Sign up</Link>
             </Typography>
           </Stack>
