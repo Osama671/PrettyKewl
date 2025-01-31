@@ -22,7 +22,7 @@ export const registerUser = async (req: Request, res: Response) => {
 export const getAuthenticatedUser = (req: IRequestExtension, res: Response) => {
   try {
     if (req.user) {
-      res.json({ user: req.user });
+      res.json({ username: req.user });
     } else {
       res.status(401).json({ message: "Unauthorized" });
     }
