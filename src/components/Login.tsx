@@ -51,6 +51,8 @@ export default function Login() {
         //     createSnackbar(message, "error");
         //     break;
         // }
+      } else {
+        createSnackbar("Internal Server Error :(", "error");
       }
     }
   };

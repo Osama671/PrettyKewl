@@ -7,7 +7,11 @@ import {
 } from "../middleware/validations.ts";
 
 import signJWT from "../middleware/signJWT.ts";
-import { clearCookie, getAuthenticatedUser, registerUser } from "../controllers/user.ts";
+import {
+  clearCookie,
+  getAuthenticatedUser,
+  registerUser,
+} from "../controllers/user.ts";
 
 const router = express.Router();
 

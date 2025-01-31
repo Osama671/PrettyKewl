@@ -15,7 +15,7 @@ export default function Signup() {
           <Grid2 size={9} sx={{ p: "32px", height: "100%" }}>
             <Carousel images={images}></Carousel>
           </Grid2>
-          <Grid2 size={7} sx={{ p: "32px", height: "100%" }}>
+          <Grid2 size={7} sx={{ p: "32px", height: "100%", }}>
             <CreateAccount />
           </Grid2>
         </Grid2>

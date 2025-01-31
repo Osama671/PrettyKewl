@@ -10,13 +10,11 @@ export default async function createUser(
   try {
     const saltRounds = 10;
     const hashedPassword = await bcrpyt.hash(password, saltRounds);
-    await client.query(`insert into "user" values($1, $2, $3, $4)`, [
-      username,
-      hashedPassword,
-      email,
-      id,
-    ]);
-    return 1;
+    const queryResult = await client.query(
+      `insert into "user" values($1, $2, $3, $4)`,
+      [username, hashedPassword, email, id]
+    );
+    return queryResult;
   } catch (e) {
     console.log(`Error in DB: ${e}`);
   }
