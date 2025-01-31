@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext } from "react";
 import { SnackbarProvider, useSnackbar } from "notistack";
 
 type SnackbarVariant =
@@ -21,22 +21,15 @@ export const useSnackbarContext = () => useContext(SnackbarContext);
 
 function SnackbarLoader({ children }: { children: React.ReactNode }) {
   const { enqueueSnackbar } = useSnackbar();
-  const [isReady, setIsReady] = useState(false);
 
-  useEffect(() => {
-    setIsReady(true);
-  }, []);
+  const createSnackbar = (text: string, variant?: SnackbarVariant) => {
+    enqueueSnackbar(text, { variant });
+  };
 
   return (
     <SnackbarContext.Provider
       value={{
-        createSnackbar: (text, variant) => {
-          if (isReady) {
-            enqueueSnackbar(text, { variant });
-          } else {
-            console.warn("Snackbar is not ready yet.");
-          }
-        },
+        createSnackbar,
       }}
     >
       {children}

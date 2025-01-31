@@ -24,25 +24,22 @@ export default function Login() {
       const response = await axios.get(
         `/api/user/login?username=${username}&password=${password}`
       );
-      switch (response.status) {
-        //Login succesfull
-        case 200:
-          navigate("/");
-          break;
-      }
+      
+      if (response.status === 200) navigate("/");
+
     } catch (e) {
       if (e instanceof AxiosError && e.response) {
         const { message } = e.response.data;
 
         switch (e.response.status) {
           case 401:
-            createSnackbar(message, "error")
+            createSnackbar(message, "error");
             break;
           case 403:
-            createSnackbar(message, "error")
+            createSnackbar(message, "error");
             break;
           case 500:
-            createSnackbar(message, "error")
+            createSnackbar(message, "error");
             break;
         }
       }
