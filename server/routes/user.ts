@@ -16,7 +16,7 @@ import {
 const router = express.Router();
 
 // I like this route uwu
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
   res.json({ message: "heyaas" });
 });
 
